@@ -1,14 +1,17 @@
 require('dotenv').config();
 const express = require('express');
+const axios = require('axios');
 const layouts = require('express-ejs-layouts');
 const session = require('express-session');
 const passport = require('./config/ppConfig');
 const flash = require('connect-flash');
 const SECRET_SESSION = process.env.SECRET_SESSION;
+const API_KEY = process.env.API_KEY;
 const app = express();
 
 // isLoggedIn middleware
 const isLoggedIn = require('./middleware/isLoggedIn');
+const { default: Axios } = require('axios');
 
 app.set('view engine', 'ejs');
 
@@ -16,6 +19,33 @@ app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
+
+// Home route
+app.get('/', (req, res) => {
+  axios.get(`https://www.mtbproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&key=${API_KEY}`)
+  .then(response => {
+    // console.log(response.data);
+    if (response.status === 200) {
+        console.log(response.data.trails);
+        let len = response.data.trails.length;
+        for (let i = 0; i < len; i++) {
+          let trailObject = response.data.trails[i]
+          const finalObject = {
+            name: trailObject.name,
+            summary: trailObject.summary,
+            difficulty: trailObject.difficulty,
+            stars: trailObject.stars,
+            location: trailObject.location,
+            length: trailObject.length,
+            high: trailObject.high,
+            low: trailObject.low,
+            image: trailObject.imgMedium
+        }
+        console.log(finalObject);
+      }
+    }
+  })
+})
 
 // secret: What we actually will be giving the user on our site as a session cookie
 // resave: Save the session even if it's modified, make this false
@@ -46,7 +76,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  console.log(res.locals.alerts);
+  // console.log(res.locals.alerts);
   res.render('index', { alerts: res.locals.alerts });
 });
 
@@ -59,7 +89,7 @@ app.use('/auth', require('./routes/auth'));
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
-  console.log(`🎧 You're listening to the smooth sounds of port ${PORT} 🎧`);
+  console.log(`Server is live on port ${PORT}`);
 });
 
 module.exports = server;
