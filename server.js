@@ -68,7 +68,7 @@ app.get('/', async (req, res) => {
   if (latitude && longitude) {
     // console.log('randomString', latitude, longitude);
       // axios.get(`https://www.mtbproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&maxResults=30&key=${API_KEY}`)
-    const data = await axios.get(`https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=500&key=${API_KEY}`)
+    const data = await axios.get(`https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=3&key=${API_KEY}`)
     console.log(data.data);
     // .then(response => {
     //   // console.log(response.data);
@@ -101,9 +101,39 @@ app.get('/', async (req, res) => {
   res.render('index', { finalArray, alerts: res.locals.alerts })
 })
 
-app.post('/savedTrails', (req, res) => {
-  // db.trails.findOrCreate
-})
+// Return "Saved Trails" page
+app.get('/', function(req, res) {
+  db.trails.findAll().then((myTrails) => {
+    res.render('savedTrails', { savedTrails: myTrails })
+  })
+});
+
+// Post trail and its detail to the database
+// app.post('/', (req, res) => {
+//   const trailDetails = {
+//     name: req.body.name,
+//     summary: req.body.summary,
+//     difficulty: req.body.difficulty,
+//     stars: req.body.stars,
+//     location: req.body.location,
+//     length: req.body.length,
+//     high: req.body.high,
+//     low: req.body.low,
+//     latitude: req.body.latitude,
+//     longitude: req.body.longitude,
+//     ascent: req.body.ascent,
+//     descent: req.body.descent,
+//     conditionStatus: req.body.conditionStatus,
+//     conditionDate: req.body.conditionDate,
+//     url: req.body.url,
+//     image: req.body.imgMedium,
+//   }
+//   db.trails.findOrCreate({
+//     where: { trailDetails }
+//   }).then((result) => {
+//     res.redirect('/savedTrails')
+//   })
+// })
 
 
 // // Home route

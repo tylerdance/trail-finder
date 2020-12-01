@@ -1,21 +1,28 @@
 <h2>Homepage</h2>
 
-<h4>Enter the latitude/longitude of your location and the max distance you are willing to travel below</h4>
+<div>
+    <a href="/savedTrails">Saved trails</a>
+</div>
+
+<br>
+
+<h4>Enter the latitude and longitude of your location and the maximum distance from your location that you want to search below</h4>
+<h5>Get your coordinates here</h5>
 
 <form method="GET" action="/">
-    <!-- <label for=""></label> -->
     Latitude: <input type="text" name="latitude">
     Longitude: <input type="text" name="longitude">
     Max distance: <input type="text" name="maxDistance">
     <button type="submit">Search</button>
 </form>
 
-
 <% finalArray.forEach(details => { %>      
     <ul>      
         <h4><%= details.name %></h4>   
-        <li>Summary: <%= details.summary %></li>   
-        <li>Difficulty: <%= details.difficulty %></li>   
+        <li>Summary: <%= details.summary %>
+        </li>   
+        <li>Difficulty: <%= details.difficulty %>
+        </li>   
         <li>Rating: <%= details.stars %></li>   
         <li>Location: <%= details.location %></li>   
         <li>Length: <%= details.length %> miles</li>    
@@ -27,8 +34,14 @@
         <li>Descent: <%= details.descent %></li>  
         <li>Condition status: <%= details.conditionStatus %></li>  
         <li>Conditions last updated on: <%= details.conditionDate %></li>  
-        <li>Link: <%= details.url %></li>  
+        <li>Link: <%= details.url %></li>
+        <br>
+            <form method="POST" action="/savedTrails">
+                <button type="submit">Save trail</button>
+            </form>  
         <br> 
         <br> 
     </ul>     
-<%  }) %> 
+<%  }) %>
+
+

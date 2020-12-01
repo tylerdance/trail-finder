@@ -11,8 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.savedTrails.belongsTo(models.users)
-
+      // models.trails.belongsTo(models.users)
     }
   };
   savedTrails.init({
