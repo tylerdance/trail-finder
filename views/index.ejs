@@ -1,13 +1,14 @@
 <h2>Homepage</h2>
 
 <div>
+    <input type="hidden" name="">
     <a href="/savedTrails">Saved trails</a>
 </div>
 
 <br>
 
 <h4>Enter the latitude and longitude of your location and the maximum distance from your location that you want to search below</h4>
-<h5>Get your coordinates here</h5>
+<h5>Get your coordinates <a href="https://www.latlong.net/" target="_blank">here</a></h5>
 
 <form method="GET" action="/">
     Latitude: <input type="text" name="latitude">
@@ -19,10 +20,8 @@
 <% finalArray.forEach(details => { %>      
     <ul>      
         <h4><%= details.name %></h4>   
-        <li>Summary: <%= details.summary %>
-        </li>   
-        <li>Difficulty: <%= details.difficulty %>
-        </li>   
+        <li>Summary: <%= details.summary %></li>   
+        <li>Difficulty: <%= details.difficulty %></li>   
         <li>Rating: <%= details.stars %></li>   
         <li>Location: <%= details.location %></li>   
         <li>Length: <%= details.length %> miles</li>    

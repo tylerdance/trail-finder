@@ -99,12 +99,16 @@ app.get('/', async (req, res) => {
   }
   // console.log(finalArray);
   res.render('index', { finalArray, alerts: res.locals.alerts })
-})
+});
 
 // Return "Saved Trails" page
-app.get('/', function(req, res) {
+app.get('/savedTrails', function(req, res) {
+  // console.log(req.params);
   db.trails.findAll().then((myTrails) => {
     res.render('savedTrails', { savedTrails: myTrails })
+  })
+  .catch(err => {
+    console.log(err);
   })
 });
 
