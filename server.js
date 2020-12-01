@@ -12,6 +12,7 @@ const app = express();
 // isLoggedIn middleware
 const isLoggedIn = require('./middleware/isLoggedIn');
 const { default: Axios } = require('axios');
+const db = require('./models');
 
 app.set('view engine', 'ejs');
 
@@ -52,41 +53,106 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
 });
+  
+// Home route
+app.get('/', async (req, res) => {
+  const latitude = req.query.latitude
+  // console.log(latitude);
+  const longitude = req.query.longitude
+  // console.log('longitude', longitude);
+  const maxDistance = req.query.maxDistance
+  let finalArray = []
+  const api = `https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=3&key=${API_KEY}`
+  // console.log(api);
+  
+  if (latitude && longitude) {
+    // console.log('randomString', latitude, longitude);
+      // axios.get(`https://www.mtbproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&maxResults=30&key=${API_KEY}`)
+    const data = await axios.get(`https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=500&key=${API_KEY}`)
+    console.log(data.data);
+    // .then(response => {
+    //   // console.log(response.data);
+      if (data.status === 200) {
+        // console.log(response.data.trails);
+        finalArray = data.data.trails.map(trailObject => {
+          const finalObject = {
+                name: trailObject.name,
+                summary: trailObject.summary,
+                difficulty: trailObject.difficulty,
+                stars: trailObject.stars,
+                location: trailObject.location,
+                length: trailObject.length,
+                high: trailObject.high,
+                low: trailObject.low,
+                latitude: trailObject.latitude,
+                longitude: trailObject.longitude,
+                ascent: trailObject.ascent,
+                descent: trailObject.descent,
+                conditionStatus: trailObject.conditionStatus,
+                conditionDate: trailObject.conditionDate,
+                url: trailObject.url,
+                image: trailObject.imgMedium,
+            }
+            return finalObject;
+          })
+      }
+  }
+  // console.log(finalArray);
+  res.render('index', { finalArray, alerts: res.locals.alerts })
+})
+
+app.post('/savedTrails', (req, res) => {
+  // db.trails.findOrCreate
+})
+
 
 // // Home route
 // app.get('/', (req, res) => {
-//   // console.log(res.locals.alerts);
-//   res.render('index', { alerts: res.locals.alerts });
-// });
-
-// homepage
-app.get('/', (req, res) => {
-  axios.get(`https://www.mtbproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&maxResults=3&key=${API_KEY}`)
-  .then(response => {
-    // console.log(response.data);
-    if (response.status === 200) {
-        // console.log(response.data.trails);
-        let len = response.data.trails.length;
-          let trailObject = response.data.trails[0,2]
-          const finalObject = {
-            name: trailObject.name,
-            summary: trailObject.summary,
-            difficulty: trailObject.difficulty,
-            stars: trailObject.stars,
-            location: trailObject.location,
-            length: trailObject.length,
-            high: trailObject.high,
-            low: trailObject.low,
-            image: trailObject.imgMedium
-        }
-        console.log(finalObject);
-        res.render('index', { finalObject, alerts: res.locals.alerts })
-    }
-  })
-  .catch(err => {
-    console.log(err);
-  })
-})
+//   const latitude = req.query.latitude
+//   // console.log(latitude);
+//   const longitude = req.query.longitude
+//   console.log('longitude', longitude);
+//   const maxDistance = req.query.maxDistance
+//   let finalArray = []
+//   const api = `https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=3&key=${API_KEY}`
+//   console.log(api);
+  
+//   if (latitude && longitude) {
+//     console.log('randomString', latitude, longitude);
+//       // axios.get(`https://www.mtbproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&maxResults=30&key=${API_KEY}`)
+//     axios.get(`https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=3&key=${API_KEY}`)
+//     .then(response => {
+//       // console.log(response.data);
+//       if (response.status === 200) {
+//         // console.log(response.data.trails);
+//         finalArray = response.data.trails.map(trailObject => {
+//           const finalObject = {
+//                 name: trailObject.name,
+//                 summary: trailObject.summary,
+//                 difficulty: trailObject.difficulty,
+//                 stars: trailObject.stars,
+//                 location: trailObject.location,
+//                 length: trailObject.length,
+//                 high: trailObject.high,
+//                 low: trailObject.low,
+//                 image: trailObject.imgMedium
+//             }
+//             return finalObject;
+//           })
+//           console.log('finalArray', finalArray);
+//           // let len = response.data.trails.length;
+//           //   let trailObject = response.data.trails[2] 
+//           // console.log(finalObject);
+//         }
+        
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     })
+//   }
+//   console.log(finalArray);
+//   res.render('index', { finalArray, alerts: res.locals.alerts })
+// })
 
 app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile');

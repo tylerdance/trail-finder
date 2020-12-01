@@ -2,26 +2,33 @@
 
 <h4>Enter the latitude/longitude of your location and the max distance you are willing to travel below</h4>
 
-<form action="">
-    <input type="text">
-    <input type="text">
-    <input type="text">
+<form method="GET" action="/">
+    <!-- <label for=""></label> -->
+    Latitude: <input type="text" name="latitude">
+    Longitude: <input type="text" name="longitude">
+    Max distance: <input type="text" name="maxDistance">
     <button type="submit">Search</button>
 </form>
 
-<br>
-<%= finalObject.name %> 
-<br>
-<%= finalObject.summary %> 
-<br>
-<%= finalObject.difficulty %> 
-<br>
-<%= finalObject.stars %> 
-<br>
-<%= finalObject.location %> 
-<br>
-<%= finalObject.length %> miles
-<br>
-<%= finalObject.high %> feet
-<br>
-<%= finalObject.low %> feet
+
+<% finalArray.forEach(details => { %>      
+    <ul>      
+        <h4><%= details.name %></h4>   
+        <li>Summary: <%= details.summary %></li>   
+        <li>Difficulty: <%= details.difficulty %></li>   
+        <li>Rating: <%= details.stars %></li>   
+        <li>Location: <%= details.location %></li>   
+        <li>Length: <%= details.length %> miles</li>    
+        <li>Elevation: <%= details.high %> feet</li>   
+        <li>Base elevation: <%= details.low %> feet</li>  
+        <li>Latitude: <%= details.latitude %></li>  
+        <li>Longitude: <%= details.longitude %></li>  
+        <li>Ascent: <%= details.ascent %></li>  
+        <li>Descent: <%= details.descent %></li>  
+        <li>Condition status: <%= details.conditionStatus %></li>  
+        <li>Conditions last updated on: <%= details.conditionDate %></li>  
+        <li>Link: <%= details.url %></li>  
+        <br> 
+        <br> 
+    </ul>     
+<%  }) %> 
