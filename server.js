@@ -21,11 +21,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
 
-// const latitude = 
-
-
-
-
 // secret: What we actually will be giving the user on our site as a session cookie
 // resave: Save the session even if it's modified, make this false
 // saveUninitialized: If we have a new session, we save it, therefore making that true
@@ -53,7 +48,14 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
 });
-  
+
+app.get('/profile', isLoggedIn, (req, res) => {
+  res.render('profile');
+});
+
+app.use('/auth', require('./routes/auth'));
+
+
 // Home route
 app.get('/', async (req, res) => {
   const latitude = req.query.latitude
@@ -74,7 +76,7 @@ app.get('/', async (req, res) => {
     // .then(response => {
     //   // console.log(response.data);
       if (data.status === 200) {
-        // console.log(response.data.trails);
+        // console.log(data.data.trails);
         finalArray = data.data.trails.map(trailObject => {
           const finalObject = {
                 name: trailObject.name,
@@ -93,7 +95,9 @@ app.get('/', async (req, res) => {
                 conditionDate: trailObject.conditionDate,
                 url: trailObject.url,
                 image: trailObject.imgMedium,
+                id: trailObject.id
             }
+            // console.log(finalObject);
             return finalObject;
           })
       }
@@ -114,25 +118,10 @@ app.get('/savedTrails', function(req, res) {
 
 // Post trail and its detail to the database
 app.post('/savedTrails', (req, res) => {
-  const trailDetails = {
-    summary: req.body.summary,
-    difficulty: req.body.difficulty,
-    stars: req.body.stars,
-    location: req.body.location,
-    length: req.body.length,
-    high: req.body.high,
-    low: req.body.low,
-    latitude: req.body.latitude,
-    longitude: req.body.longitude,
-    ascent: req.body.ascent,
-    descent: req.body.descent,
-    conditionStatus: req.body.conditionStatus,
-    conditionDate: req.body.conditionDate,
-    url: req.body.url,
-    image: req.body.imgMedium,
-  }
+  const trailId = req.body.trailId
+  console.log(trailId);
   db.trails.findOrCreate({
-    where: { trailDetails }
+    where: { trailId }
   }).then((result) => {
     res.redirect('/savedTrails')
   })
@@ -164,14 +153,6 @@ app.post('/savedTrails', (req, res) => {
 // })
 
 
-
-
-app.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
-});
-
-
-app.use('/auth', require('./routes/auth'));
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {

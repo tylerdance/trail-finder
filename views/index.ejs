@@ -43,8 +43,9 @@
         <li><a href="<% details.url %>" target="_blank">More info</a></li>
         <br>
             <form method="POST" action="/savedTrails">
+                <input hidden type="number" name="trailId" value="<% details.trailId %>">
                 <button type="submit">Save trail</button>
-            </form>  
+            </form>
         <br> 
         <br> 
     </ul>     
