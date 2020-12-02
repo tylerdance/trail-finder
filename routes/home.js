@@ -4,9 +4,10 @@ const axios = require('axios');
 const db = require('../models')
 const SECRET_SESSION = process.env.SECRET_SESSION;
 const API_KEY = process.env.API_KEY;
+const isLoggedIn = require('../middleware/isLoggedIn')
 
 // Home route
-app.get('/', async (req, res) => {
+app.get('/', isLoggedIn, async (req, res) => {
     const latitude = req.query.latitude
     // console.log(latitude);
     const longitude = req.query.longitude
@@ -51,19 +52,19 @@ app.get('/', async (req, res) => {
             })
         }
     }
-// console.log(finalArray);
-res.render('index', { finalArray, alerts: res.locals.alerts })
+    // console.log(finalArray);
+    res.render('index', { finalArray, alerts: res.locals.alerts })
 });
   
 
 // Return "Saved Trails" page
 app.get('/savedTrails', function(req, res) {
-db.trails.findAll().then((myTrails) => {
-    res.render('savedTrails', { savedTrails: myTrails })
-})
-.catch(err => {
-    console.log(err);
-})
+    db.trails.findAll().then((myTrails) => {
+        res.render('savedTrails', { savedTrails: myTrails })
+    })
+    .catch(err => {
+        console.log(err);
+    })
 });
 
 // Post trail with its details to the database
