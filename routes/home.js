@@ -55,7 +55,7 @@ app.get('/', isLoggedIn, async (req, res) => {
     // console.log(finalArray);
     res.render('index', { finalArray, alerts: res.locals.alerts })
 });
-  
+
 
 // Return "Saved Trails" page
 app.get('/savedTrails', function(req, res) {
@@ -69,10 +69,31 @@ app.get('/savedTrails', function(req, res) {
 
 // Post trail with its details to the database
 app.post('/savedTrails', (req, res) => {
-    const trailId = req.body.trailId
-    console.log(trailId);
+    const trailDetails = req.body;
+    console.log('trail id', trailDetails);
+    // console.log('saved trails post route');
+    // console.log(JSON.stringify(req.body));
         db.trails.findOrCreate({
-            where: { trailId }
+            where: { id: trailDetails.id }, 
+            defaults: {
+                name: trailDetails.name,
+                summary: trailDetails.summary,
+                difficulty: trailDetails.difficulty,
+                stars: trailDetails.stars,
+                location: trailDetails.location,
+                length: trailDetails.length,
+                high: trailDetails.high,
+                low: trailDetails.low,
+                latitude: trailDetails.latitude,
+                longitude: trailDetails.longitude,
+                ascent: trailDetails.ascent,
+                descent: trailDetails.descent,
+                conditionStatus: trailDetails.conditionStatus,
+                conditionDate: trailDetails.conditionDate,
+                url: trailDetails.url,
+                image: trailDetails.imgMedium,
+                id: trailDetails.id
+            }
         }).then((result) => {
             res.redirect('/savedTrails')
     })
