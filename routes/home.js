@@ -67,61 +67,34 @@ app.get('/savedTrails', function(req, res) {
     })
 });
 
-// Post trail with its details to the database
+// Save trail with its details to the database
 app.post('/savedTrails', (req, res) => {
     const trailDetails = req.body;
     console.log('trail id', trailDetails);
-    // console.log('saved trails post route');
-    // console.log(JSON.stringify(req.body));
-        db.trails.findOrCreate({
-            where: { id: trailDetails.id }, 
-            defaults: {
-                name: trailDetails.name,
-                summary: trailDetails.summary,
-                difficulty: trailDetails.difficulty,
-                stars: trailDetails.stars,
-                location: trailDetails.location,
-                length: trailDetails.length,
-                high: trailDetails.high,
-                low: trailDetails.low,
-                latitude: trailDetails.latitude,
-                longitude: trailDetails.longitude,
-                ascent: trailDetails.ascent,
-                descent: trailDetails.descent,
-                conditionStatus: trailDetails.conditionStatus,
-                conditionDate: trailDetails.conditionDate,
-                url: trailDetails.url,
-                image: trailDetails.imgMedium,
-                id: trailDetails.id
-            }
+    db.trails.findOrCreate({
+        where: {
+            id: req.body.id,
+            name: trailDetails.name,
+            summary: trailDetails.summary,
+            difficulty: trailDetails.difficulty,
+            stars: trailDetails.stars,
+            location: trailDetails.location,
+            length: trailDetails.length,
+            high: trailDetails.high,
+            low: trailDetails.low,
+            latitude: trailDetails.latitude,
+            longitude: trailDetails.longitude,
+            ascent: trailDetails.ascent,
+            descent: trailDetails.descent,
+            conditionStatus: trailDetails.conditionStatus,
+            conditionDate: trailDetails.conditionDate,
+            url: trailDetails.url,
+            image: trailDetails.imgMedium,
+            id: trailDetails.id
+        }
         }).then((result) => {
-            res.redirect('/savedTrails')
+        res.redirect('/')
     })
 })
-
-
-// app.post('/', (req, res) => {
-//   db.trails.findOrCreate({
-//     where: {
-//       summary: data.trails.summary,
-//       difficulty: data.trails.difficulty,
-//       stars: data.trails.stars,
-//       location: data.trails.location,
-//       length: data.trails.length,
-//       high: data.trails.high,
-//       low: data.trails.low,
-//       latitude: data.trails.latitude,
-//       longitude: data.trails.longitude,
-//       ascent: data.trails.ascent,
-//       descent: data.trails.descent,
-//       conditionStatus: data.trails.conditionStatus,
-//       conditionDate: data.trails.conditionDate,
-//       url: data.trails.url,
-//       image: data.trails.imgMedium,
-//     }
-//   }).then((result) => {
-//     res.redirect('/savedTrails')
-//   })
-// })
 
 module.exports = app;
