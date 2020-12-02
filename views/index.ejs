@@ -7,15 +7,22 @@
 
 <br>
 
-<h4>Enter the latitude and longitude of your location and the maximum distance from your location that you want to search below</h4>
-<h5>Get your coordinates <a href="https://www.latlong.net/" target="_blank">here</a></h5>
+<div class="instructions">
+    <h3>Enter the latitude and longitude of your location and the maximum distance that you want to search from your location below</h3>
+    <h4>Get your coordinates <a href="https://www.latlong.net/" target="_blank">here</a></h4>
+</div>
 
-<form method="GET" action="/">
-    Latitude: <input type="text" name="latitude">
-    Longitude: <input type="text" name="longitude">
-    Max distance: <input type="text" name="maxDistance">
-    <button type="submit">Search</button>
-</form>
+<div class="userParams">
+    <form method="GET" action="/">
+        Latitude: <input type="text" name="latitude">
+        <br>
+        Longitude: <input type="text" name="longitude">
+        <br>
+        Max distance: <input type="text" name="maxDistance">
+        <br>
+        <button type="submit">Search</button>
+    </form>
+</div>
 
 <% finalArray.forEach(details => { %>      
     <ul>      
@@ -33,7 +40,7 @@
         <li>Descent: <%= details.descent %></li>  
         <li>Condition status: <%= details.conditionStatus %></li>  
         <li>Conditions last updated on: <%= details.conditionDate %></li>  
-        <li>Link: <%= details.url %></li>
+        <li><a href="<% details.url %>" target="_blank">More info</a></li>
         <br>
             <form method="POST" action="/savedTrails">
                 <button type="submit">Save trail</button>
@@ -42,5 +49,3 @@
         <br> 
     </ul>     
 <%  }) %>
-
-

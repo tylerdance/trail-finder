@@ -1,5 +1,9 @@
 body {
   background-color: rgb(254, 133, 28);
+  /* background-image: url('https://marathonmtb.com/wp-content/uploads/2019/07/BCBR19_4_0079_MR.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; */
 }
 
 nav ul li {
@@ -11,3 +15,15 @@ nav ul li {
 h1 {
   color: rgb(34, 0, 255);
 }
+
+/* .instructions {
+  color: white;
+}
+
+.userParams {
+  color: white;
+}
+
+#results {
+  color: white;
+} */
