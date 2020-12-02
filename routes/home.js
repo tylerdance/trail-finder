@@ -69,31 +69,30 @@ app.get('/savedTrails', function(req, res) {
 
 // Save trail with its details to the database
 app.post('/savedTrails', (req, res) => {
-    const trailDetails = req.body;
-    console.log('trail id', trailDetails);
+    // const trailDetails = req.body;
+    // console.log('trail id', trailDetails);
     db.trails.findOrCreate({
         where: {
-            id: req.body.id,
-            name: trailDetails.name,
-            summary: trailDetails.summary,
-            difficulty: trailDetails.difficulty,
-            stars: trailDetails.stars,
-            location: trailDetails.location,
-            length: trailDetails.length,
-            high: trailDetails.high,
-            low: trailDetails.low,
-            latitude: trailDetails.latitude,
-            longitude: trailDetails.longitude,
-            ascent: trailDetails.ascent,
-            descent: trailDetails.descent,
-            conditionStatus: trailDetails.conditionStatus,
-            conditionDate: trailDetails.conditionDate,
-            url: trailDetails.url,
-            image: trailDetails.imgMedium,
-            id: trailDetails.id
+            // id: trailDetails.id,
+            // name: req.body.name,
+            summary: req.body.summary,
+            difficulty: req.body.difficulty,
+            stars: req.body.stars,
+            location: req.body.location,
+            length: req.body.length,
+            high: req.body.high,
+            low: req.body.low,
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
+            ascent: req.body.ascent,
+            descent: req.body.descent,
+            conditionStatus: req.body.conditionStatus,
+            conditionDate: req.body.conditionDate,
+            url: req.body.url,
+            // image: trailDetails.imgMedium,
         }
         }).then((result) => {
-        res.redirect('/')
+        res.redirect('/savedTrails')
     })
 })
 
