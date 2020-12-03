@@ -91,8 +91,8 @@ app.post('/savedTrails', isLoggedIn, (req, res) => {
             conditionDate: req.body.conditionDate,
             url: req.body.url,
             name: req.body.name,
-            userId: req.user.id
-            // image: trailDetails.imgMedium,
+            userId: req.user.id,
+            // trailId 
         }
         }).then((result) => {
         res.redirect('/savedTrails')
