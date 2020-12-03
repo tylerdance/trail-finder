@@ -49,7 +49,7 @@ router.post('/signup', (req, res) => {
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/auth/login',
-  successFlash: 'Welcome back...',
+  successFlash: '',
   failureFlash: 'Either email or password is incorrect. Please try again.'
 }));
 

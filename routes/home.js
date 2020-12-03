@@ -26,7 +26,7 @@ app.get('/', isLoggedIn, async (req, res) => {
         // .then(response => {
         //   // console.log(response.data);
         if (data.status === 200) {
-            // console.log(data.data.trails);
+            console.log(data.data.trails);
             finalArray = data.data.trails.map(trailObject => {
             const finalObject = {
                     name: trailObject.name,
@@ -58,8 +58,9 @@ app.get('/', isLoggedIn, async (req, res) => {
 
 
 // Return "Saved Trails" page
-app.get('/savedTrails', function(req, res) {
+app.get('/savedTrails', isLoggedIn, function(req, res) {
     db.trails.findAll().then((myTrails) => {
+        console.log(myTrails);
         res.render('savedTrails', { savedTrails: myTrails })
     })
     .catch(err => {
@@ -68,13 +69,13 @@ app.get('/savedTrails', function(req, res) {
 });
 
 // Save trail with its details to the database
-app.post('/savedTrails', (req, res) => {
+app.post('/savedTrails', isLoggedIn, (req, res) => {
     // const trailDetails = req.body;
     // console.log('trail id', trailDetails);
+    console.log(req.user);
     db.trails.findOrCreate({
         where: {
-            // id: trailDetails.id,
-            // name: req.body.name,
+            // trailId: trailDetails.id,
             summary: req.body.summary,
             difficulty: req.body.difficulty,
             stars: req.body.stars,
@@ -89,11 +90,31 @@ app.post('/savedTrails', (req, res) => {
             conditionStatus: req.body.conditionStatus,
             conditionDate: req.body.conditionDate,
             url: req.body.url,
+            name: req.body.name,
+            userId: req.user.id
             // image: trailDetails.imgMedium,
         }
         }).then((result) => {
         res.redirect('/savedTrails')
     })
+})
+
+// Delete saved trail
+app.delete('/savedTrails/:id', isLoggedIn, async (req, res) => {
+    console.log('something', req.params);
+    const { id } = req.params;
+    const deletedTrail = await db.trails.destroy({
+        where: {
+            id
+        }
+    }).catch(err => {
+        console.log(err);
+    }); 
+    if (!deletedTrail) {
+        console.log(err);
+    } else {
+        res.redirect('/savedTrails')
+    }
 })
 
 module.exports = app;

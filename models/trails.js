@@ -29,7 +29,9 @@ module.exports = (sequelize, DataTypes) => {
     conditionStatus: DataTypes.TEXT,
     conditionDate: DataTypes.STRING,
     url: DataTypes.TEXT,
-    image: DataTypes.TEXT
+    image: DataTypes.TEXT,
+    name: DataTypes.TEXT,
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'trails',

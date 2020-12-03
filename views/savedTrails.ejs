@@ -1,2 +1,67 @@
 <h1>Saved Trails</h1>
 
+<div class="contain">
+    <% savedTrails.forEach((trail) => { %>
+        <div>
+            <h3>
+                <%= trail.name %>    
+            </h3>
+            <div>Difficulty: 
+                <%= trail.difficulty %>    
+            </div>
+            <div> Rating: 
+                <%= trail.stars %>  
+                  stars
+            </div>
+            <div>Location: 
+                <%= trail.location %>    
+            </div>
+            <div>Length:
+                <%= trail.length %>
+                 miles
+            </div>
+            <div>Elevation:
+                <%= trail.high %>
+                 feet
+            </div>
+            <div>Base elevation:
+                <%= trail.low %>
+                 feet    
+            </div>
+            <div>Ascent: 
+                <%= trail.ascent %>
+                 feet
+            </div>
+            <div>Descent: 
+                <%= trail.descent %>
+                 feet  
+            </div>
+            <div>Latitude: 
+                <%= trail.latitude %>    
+            </div>
+            <div>Longitude: 
+                <%= trail.longitude %>    
+            </div>
+            <div>Conditions Status: 
+                <%= trail.conditionStatus %>    
+            </div>
+            <div>Conditions last updated: 
+                <%= trail.conditionDate %>    
+            </div>
+            <div>
+                <a href="<%= trail.url %>" target="_blank">More info</a>  
+            </div>
+        </div>
+        <br>
+
+        <form action="/savedTrails/<%= trail.id %>?_method=DELETE" method="POST">
+            <input hidden type="text" name="id" value="<%= trail.id %>">
+            <button type="submit">
+                Remove Trail
+            </button>    
+        </form>
+
+        <br>
+        <br>
+    <% }) %> 
+</div>
