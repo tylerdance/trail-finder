@@ -4,16 +4,16 @@
     <button>Back to Search</button>
 </form>
 
-<div class="contain">
+<div>
     <% savedTrails.forEach((trail) => { %>
         <div>
-            <h3>
+            <h3 class="trail-name" style="color: white;">
                 <%= trail.name %>    
             </h3>
             <div>Difficulty: 
                 <%= trail.difficulty %>    
             </div>
-            <div> Rating: 
+            <div>Rating: 
                 <%= trail.stars %>  
                   stars
             </div>

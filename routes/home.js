@@ -20,7 +20,7 @@ app.get('/', isLoggedIn, async (req, res) => {
     if (latitude && longitude) {
         // console.log('randomString', latitude, longitude);
         // axios.get(`https://www.mtbproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&maxResults=30&key=${API_KEY}`)
-        const data = await axios.get(`https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=3&key=${API_KEY}`)
+        const data = await axios.get(`https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=10&key=${API_KEY}`)
         // console.log(data.data);
         // console.log(req.body.name);
         // .then(response => {
@@ -102,6 +102,7 @@ app.post('/savedTrails', isLoggedIn, (req, res) => {
         }).then((result) => {
         res.redirect('/savedTrails')
     })
+    // localStorage.setItem('', 'Tom');
 })
 
 // Delete saved trail
@@ -121,5 +122,21 @@ app.delete('/savedTrails/:id', isLoggedIn, async (req, res) => {
         res.redirect('/savedTrails')
     }
 })
+
+// Update user email put route
+// app.put('/:id', function(req, res){
+//     console.log('--- PUT route ---');
+//     const oldEmail = fs.readFileSync('./dinosaurs.json');
+//     const newEmail = JSON.parse(oldEmail);
+  
+//     // Re-assign the name and type of the dinosaurs fields to be edited
+//     const dinoObject = dinos[req.params.id];
+//     dinoObject.name = req.body.name;
+//     dinoObject.type = req.body.type;
+  
+//     fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinos));
+//     res.redirect('/profile');
+// })
+
 
 module.exports = app;
