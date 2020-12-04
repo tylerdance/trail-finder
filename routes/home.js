@@ -21,10 +21,6 @@ app.get('/', isLoggedIn, async (req, res) => {
         // console.log('randomString', latitude, longitude);
         // axios.get(`https://www.mtbproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&maxResults=30&key=${API_KEY}`)
         const data = await axios.get(`https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=10&key=${API_KEY}`)
-        // console.log(data.data);
-        // console.log(req.body.name);
-        // .then(response => {
-        //   // console.log(response.data);
         if (data.status === 200) {
             // console.log(data.data.trails);
             finalArray = data.data.trails.map(trailObject => {
@@ -56,7 +52,6 @@ app.get('/', isLoggedIn, async (req, res) => {
     res.render('index', { finalArray, alerts: res.locals.alerts })
 });
 
-
 // Return "Saved Trails" page
 app.get('/savedTrails', isLoggedIn, function(req, res) {
     const currentUser = req.user.id;
@@ -77,32 +72,31 @@ app.get('/savedTrails', isLoggedIn, function(req, res) {
 app.post('/savedTrails', isLoggedIn, (req, res) => {
     // const trailDetails = req.body;
     // console.log('trail id', trailDetails);
-    console.log(req.user);
+    // console.log(req.user);
+    const storeResults = {
+        summary: req.body.summary,
+        difficulty: req.body.difficulty,
+        stars: req.body.stars,
+        location: req.body.location,
+        length: req.body.length,
+        high: req.body.high,
+        low: req.body.low,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+        ascent: req.body.ascent,
+        descent: req.body.descent,
+        conditionStatus: req.body.conditionStatus,
+        conditionDate: req.body.conditionDate,
+        url: req.body.url,
+        name: req.body.name,
+        userId: req.user.id,
+    }
     db.trails.findOrCreate({
-        where: {
-            // trailId: trailDetails.id,
-            summary: req.body.summary,
-            difficulty: req.body.difficulty,
-            stars: req.body.stars,
-            location: req.body.location,
-            length: req.body.length,
-            high: req.body.high,
-            low: req.body.low,
-            latitude: req.body.latitude,
-            longitude: req.body.longitude,
-            ascent: req.body.ascent,
-            descent: req.body.descent,
-            conditionStatus: req.body.conditionStatus,
-            conditionDate: req.body.conditionDate,
-            url: req.body.url,
-            name: req.body.name,
-            userId: req.user.id,
-            // trailId 
-        }
+        where: storeResults
         }).then((result) => {
         res.redirect('/savedTrails')
     })
-    // localStorage.setItem('', 'Tom');
+    // localStorage.setItem(storeResults);
 })
 
 // Delete saved trail
@@ -123,20 +117,21 @@ app.delete('/savedTrails/:id', isLoggedIn, async (req, res) => {
     }
 })
 
-// Update user email put route
-// app.put('/:id', function(req, res){
-//     console.log('--- PUT route ---');
-//     const oldEmail = fs.readFileSync('./dinosaurs.json');
-//     const newEmail = JSON.parse(oldEmail);
-  
-//     // Re-assign the name and type of the dinosaurs fields to be edited
-//     const dinoObject = dinos[req.params.id];
-//     dinoObject.name = req.body.name;
-//     dinoObject.type = req.body.type;
-  
-//     fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinos));
-//     res.redirect('/profile');
-// })
+// Return update email page
+app.get('/update', isLoggedIn, function(req, res) {
+    // console.log('--- EDIT route ---');
+    res.render('update')
+})
+
+// Update user email
+app.put('/:id', isLoggedIn, function(req, res){
+    console.log('--- PUT route ---');
+    const updateEmail = req.params.id;
+    updateEmail.email = req.body.email;
+    
+    db.users.update(req.body.email);
+    res.redirect('/profile');
+})
 
 
 module.exports = app;

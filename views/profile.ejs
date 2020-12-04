@@ -1,14 +1,20 @@
-<h2>My Profile</h2>
+<h2 id="myProfile">My Profile</h2>
 
 <form action="/">
     <button>Back to Search</button>
 </form>
 
-<pre><%= (user.name) %></pre>
-<pre>Email: <%= (user.email) %></pre>
+<br>
+<br>
+<br>
 
 <div>
-    <form action="">
+    <pre class="currentInfo"><%= (user.name) %></pre>
+    <pre class="currentInfo">Email: <%= (user.email) %></pre>
+</div>
+
+<div>
+    <form action="/update">
         <button>Change your log-in email</button>
     </form>
 </div>

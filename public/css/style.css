@@ -20,13 +20,16 @@ h1 {
   color: white;
 }
 
-.instructions {
+#instructions {
   color: white;
+  display: flex;
   justify-content: center;
 }
 
 .userParams {
   color: white;
+  display: flex;
+  justify-content: center;
 }
 
 #results {
@@ -42,7 +45,7 @@ h1 {
 }
 
 #hereLink {
-  color: white;
+  color: rgb(240, 97, 31);
 }
 
 .trails {
@@ -50,5 +53,17 @@ h1 {
 }
 
 #trail-name {
+  color: white;
+}
+
+#updateEmail {
+  color: white;
+}
+
+.currentInfo {
+  color: white;
+}
+
+#myProfile {
   color: white;
 }
