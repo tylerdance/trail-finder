@@ -31,9 +31,9 @@
 </div>
 
 <% finalArray.forEach(details => { %>      
-    <form method="POST" action="/savedTrails">
+    <form method="POST" action="/savedTrails" class="trails">
         <ul>
-            <h4>
+            <h4 id="trail-name">
                 <%= details.name %>
                 <input hidden type="text" name="name" id="trails" value="<%= details.name %>">
             </h4>   
