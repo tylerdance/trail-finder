@@ -26,7 +26,7 @@ app.get('/', isLoggedIn, async (req, res) => {
         // .then(response => {
         //   // console.log(response.data);
         if (data.status === 200) {
-            console.log(data.data.trails);
+            // console.log(data.data.trails);
             finalArray = data.data.trails.map(trailObject => {
             const finalObject = {
                     name: trailObject.name,
@@ -59,7 +59,12 @@ app.get('/', isLoggedIn, async (req, res) => {
 
 // Return "Saved Trails" page
 app.get('/savedTrails', isLoggedIn, function(req, res) {
-    db.trails.findAll().then((myTrails) => {
+    const currentUser = req.user.id;
+    db.trails.findAll({
+        where: {
+            userId: currentUser
+        }
+    }).then((myTrails) => {
         console.log(myTrails);
         res.render('savedTrails', { savedTrails: myTrails })
     })
