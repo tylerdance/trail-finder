@@ -55,6 +55,10 @@ app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile', { user: req.user });
 });
 
+app.get('/update', isLoggedIn, (req, res) => {
+  res.render('update', { user: req.user });
+});
+
 app.use('/auth', require('./routes/auth'));
 
 app.use('/', require('./routes/home'));

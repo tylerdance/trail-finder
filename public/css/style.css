@@ -50,6 +50,8 @@ h1 {
 
 .trails {
   color:white;
+  /* display: flex;
+  justify-content: center; */
 }
 
 #trail-name {
@@ -66,4 +68,34 @@ h1 {
 
 #myProfile {
   color: white;
+}
+
+#signUp {
+  color: white;
+}
+
+#saved-trails {
+  margin-left: 30px;
+  color: white;
+}
+
+#back-to-search {
+  margin-left: 30px;
+}
+
+#remove-trail {
+  margin-left: 30px;
+}
+
+#saved-trails-header {
+  display: grid;
+  justify-content: center;
+}
+
+#my-saved-trails-btn {
+  margin-left: 30px;
+}
+
+#profile-container {
+  margin-left: 30px;
 }

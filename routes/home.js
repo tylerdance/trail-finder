@@ -20,7 +20,7 @@ app.get('/', isLoggedIn, async (req, res) => {
     if (latitude && longitude) {
         // console.log('randomString', latitude, longitude);
         // axios.get(`https://www.mtbproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&maxResults=30&key=${API_KEY}`)
-        const data = await axios.get(`https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=10&key=${API_KEY}`)
+        const data = await axios.get(`https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=3&key=${API_KEY}`)
         if (data.status === 200) {
             // console.log(data.data.trails);
             finalArray = data.data.trails.map(trailObject => {
@@ -101,7 +101,7 @@ app.post('/savedTrails', isLoggedIn, (req, res) => {
 
 // Delete saved trail
 app.delete('/savedTrails/:id', isLoggedIn, async (req, res) => {
-    console.log('something', req.params);
+    // console.log('something', req.params);
     const { id } = req.params;
     const deletedTrail = await db.trails.destroy({
         where: {
@@ -124,13 +124,16 @@ app.get('/update', isLoggedIn, function(req, res) {
 })
 
 // Update user email
-app.put('/:id', isLoggedIn, function(req, res){
+app.put('/update', isLoggedIn, (req, res) => {
     console.log('--- PUT route ---');
-    const updateEmail = req.params.id;
-    updateEmail.email = req.body.email;
-    
-    db.users.update(req.body.email);
-    res.redirect('/profile');
+    console.log(req.user.id);
+    db.users.update({
+        email: req.body.email
+    }, {
+        where: { id: req.user.id }
+    }).then(() => {
+        res.redirect('/profile')
+    })
 })
 
 

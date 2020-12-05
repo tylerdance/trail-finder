@@ -6,12 +6,17 @@
     <button>Back to Profile</button>
 </form>
 
+<br>
+<br>
+
+<div>Current email: 
+    <div class="currentInfo"><%= (user.email) %></div>
+</div>
 
 <div id="updateEmail">
-    <form method="POST" action="/update<%=  %>/?_method=PUT">
-        <label for="name">New email</label>
-        <input type="text" name="name" id="name" value="<%=  %>">
-        <input type="submit" value="Submit">
+    <form method="POST" action="/update?_method=PUT">
+        <label for="new-email">New email</label>
+        <input type="text" name="email" id="name" value="<%= user.email %>">
+        <input type="submit" value="Update">
     </form>
-
 </div>

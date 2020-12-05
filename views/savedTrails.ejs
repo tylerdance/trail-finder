@@ -1,12 +1,16 @@
-<h1>Saved Trails</h1>
+<br>
 
 <form action="/">
-    <button>Back to Search</button>
+    <button id="back-to-search">Back to Search</button>
 </form>
+
+<h1 id="saved-trails-header">Saved Trails</h1>
+
+<br>
 
 <div>
     <% savedTrails.forEach((trail) => { %>
-        <div class="trails">
+        <div id="saved-trails">
             <h3 id="trail-name" style="color:white;">
                 <%= trail.name %>    
             </h3>
@@ -60,7 +64,7 @@
 
         <form action="/savedTrails/<%= trail.id %>?_method=DELETE" method="POST">
             <input hidden type="text" name="id" value="<%= trail.id %>">
-            <button type="submit">
+            <button type="submit" id="remove-trail">
                 Remove Trail
             </button>    
         </form>
