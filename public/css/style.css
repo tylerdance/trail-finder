@@ -79,7 +79,7 @@ h1 {
   color: white;
 }
 
-#back-to-search {
+#back-button {
   margin-left: 30px;
 }
 
@@ -97,5 +97,9 @@ h1 {
 }
 
 #profile-container {
+  margin-left: 30px;
+}
+
+#updateEmail {
   margin-left: 30px;
 }

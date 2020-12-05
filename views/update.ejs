@@ -1,22 +1,24 @@
 <form action="/">
-    <button>Back to Search</button>
+    <button id="back-button">Back to Search</button>
 </form>
 
 <form action="/profile">
-    <button>Back to Profile</button>
+    <button id="back-button">Back to Profile</button>
 </form>
 
 <br>
 <br>
 
-<div>Current email: 
-    <div class="currentInfo"><%= (user.email) %></div>
+<div class="currentInfo"> 
+    <div id="updateEmail">Current email: <%= (user.email) %></div>
 </div>
+
+<br>
 
 <div id="updateEmail">
     <form method="POST" action="/update?_method=PUT">
         <label for="new-email">New email</label>
-        <input type="text" name="email" id="name" value="<%= user.email %>">
+        <input type="text" name="email" id="name">
         <input type="submit" value="Update">
     </form>
 </div>
