@@ -26,7 +26,9 @@ h1 {
   /* display: flex;
   justify-content: center; */
   font-family: 'Architects Daughter', cursive;
-  font-size: 40px;
+  font-size: 42px;
+  margin-left: 180px;
+  margin-right: 180px;
 }
 
 .userParams {
@@ -50,9 +52,7 @@ h1 {
   color: white;
 }
 
-#hereLink {
-  color: rgb(240, 97, 31);
-}
+
 
 .trails {
   color:white;
@@ -73,7 +73,6 @@ h1 {
 
 #span {
   background-color: tomato;
-
 }
 
 #updateEmail {
@@ -131,6 +130,68 @@ h1 {
   font-family: 'Architects Daughter', cursive;
   font-size: 20px;
 }
+
+/* saved trails button */
+.btn {
+  flex: 1 1 auto;
+  margin: 10px;
+  padding: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+ /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  font-family: 'Architects Daughter', cursive;
+}
+.btn:hover {
+  background-position: right center; /* change the direction of the change here */
+}
+.btn-3 {
+  background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
+}
+
+
+/* coordiantes button */
+.bttn-hover {
+  width: 250px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+.bttn-hover:hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+.bttn-hover:focus {
+  outline: none;
+}
+.bttn-hover.color-4 {
+  background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516);
+  box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
+}
+
+#hereLink {
+  color: rgb(31, 142, 240);
+  font-size: 20px;
+}
+
 
 #profile-container {
   margin-left: 30px;
