@@ -66,7 +66,7 @@ h1 {
 
 #trail-name {
   color: white;
-  font-size: 55px;
+  font-size: 64px;
   font-family: 'Reenie Beanie', cursive;
   /* background-color: tomato; */
 }
@@ -82,10 +82,13 @@ h1 {
 
 .currentInfo {
   color: white;
+  font-size: 22px;
 }
 
 #myProfile {
   color: white;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 50px;
 }
 
 #signUp {
@@ -101,6 +104,8 @@ h1 {
 
 #back-button {
   margin-left: 30px;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 20px;
 }
 
 #remove-trail {
@@ -123,6 +128,8 @@ h1 {
 
 #my-saved-trails-btn {
   margin-left: 30px;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 20px;
 }
 
 #profile-container {
@@ -135,4 +142,29 @@ h1 {
 
 .alert {
   color: white;
+}
+
+.form-row {
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+#login-message {
+  color: aliceblue;
+  text-align: center;
+  font-size: 40px;
+}
+
+#sign-up-message {
+  color: aliceblue;
+  text-align: center;
+  font-size: 40px;
+}
+
+#login-btn {
+  margin-left: 205px;
+}
+
+#sign-up-btn {
+  margin-left: 205px;
 }
