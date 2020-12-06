@@ -4,63 +4,66 @@
     <button id="back-button">Back to Search</button>
 </form>
 
-<h1 id="saved-trails-header">Saved Trails</h1>
+<br>
+
+<h1 id="header">Saved Trails</h1>
 
 <br>
 
 <div>
     <% savedTrails.forEach((trail) => { %>
-        <div id="saved-trails">
+        <div id="my-trails">
             <h3 id="trail-name" style="color:white;">
                 <%= trail.name %>    
             </h3>
-            <div>Difficulty: 
-                <%= trail.difficulty %>    
-            </div>
-            <div>Rating: 
-                <%= trail.stars %>  
-                  stars
-            </div>
-            <div>Location: 
-                <%= trail.location %>    
-            </div>
-            <div>Length:
-                <%= trail.length %>
-                 miles
-            </div>
-            <div>Elevation:
-                <%= trail.high %>
-                 feet
-            </div>
-            <div>Base elevation:
-                <%= trail.low %>
-                 feet    
-            </div>
-            <div>Ascent: 
-                <%= trail.ascent %>
-                 feet
-            </div>
-            <div>Descent: 
-                <%= trail.descent %>
-                 feet  
-            </div>
-            <div>Latitude: 
-                <%= trail.latitude %>    
-            </div>
-            <div>Longitude: 
-                <%= trail.longitude %>    
-            </div>
-            <div>Conditions Status: 
-                <%= trail.conditionStatus %>    
-            </div>
-            <div>Conditions last updated: 
-                <%= trail.conditionDate %>    
+            <div> 
+                <span id="span">>Summary: <%= trail.summary %></span>     
             </div>
             <div>
-                <a href="<%= trail.url %>" target="_blank" style="color: rgb(21, 0, 255) ;">More info</a>  
+                <span id="span">>Difficulty: <%= trail.difficulty %></span>     
+            </div>
+            <div>
+                <span id="span">>Rating: <%= trail.stars %> stars</span>
+            </div>
+            <div>
+                <span id="span">>Location: <%= trail.location %></span>     
+            </div>
+            <div>
+                <span id="span">>Length: <%= trail.length %> miles</span> 
+                
+            </div>
+            <div>
+                <span id="span">>Elevation: <%= trail.high %> feet</span> 
+            </div>
+            <div>
+                <span id="span">>Base elevation: <%= trail.low %> feet </span>
+                   
+            </div>
+            <div>
+                <span id="span">>Ascent: <%= trail.ascent %> feet</span> 
+                
+            </div>
+            <div>
+                <span id="span">>Descent: <%= trail.descent %> feet</span>
+                
+            </div>
+            <div>
+                <span id="span">>Latitude: <%= trail.latitude %></span>   
+            </div>
+            <div>
+                <span id="span">>Longitude: <%= trail.longitude %></span>    
+            </div>
+            <div>
+                <span id="span">>Conditions Status: <%= trail.conditionStatus %></span>    
+            </div>
+            <div> 
+                <span id="span">>Conditions last updated: <%= trail.conditionDate %></span>    
+            </div>
+            <div>
+                <a href="<%= trail.url %>" target="_blank" style="color: rgb(255, 250, 100);">More info</a>  
             </div>
         </div>
-        <br>
+        <!-- <br> -->
 
         <form action="/savedTrails/<%= trail.id %>?_method=DELETE" method="POST">
             <input hidden type="text" name="id" value="<%= trail.id %>">

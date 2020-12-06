@@ -12,21 +12,22 @@
     </form>
 </div>
 
+<h1 id="header">Off Road Trail Finder</h1>
+
 <br>
 <br>
 <br>
 <br>
 <br>
 
-<div id="instructions">
-    <h3>Enter the coordinates of your location and the maximum distance you want to search below</h3>
+<div>
+    <h3 id="instructions">Enter the coordinates of your location and the maximum distance you want to search below</h3>
     <br>
 </div>
 
-<br>
-<div id="instructions">
+<div >
     <div>
-        <h4>Get your coordinates <a href="https://www.latlong.net/" target="_blank" id="hereLink">here</a></h4>
+        <h4 id="instructions"><a href="https://www.latlong.net/" target="_blank" id="hereLink">Get your coordinates here</a></h4>
     </div>
 </div>
 <br>
@@ -58,72 +59,74 @@
     </form>
 </div>
 
+<br>
+<br>
+
 <% finalArray.forEach(details => { %>      
     <form method="POST" action="/savedTrails" class="trails">
         <ul>
             <h4 id="trail-name">
-                <%= details.name %>
+                <span id="span"></span><b><%= details.name %></b> 
                 <input hidden type="text" name="name" id="trails" value="<%= details.name %>">
             </h4>   
-            <li>
-                Summary: <%= details.summary %>
+            <div>
+                <span id="span">>Summary: <%= details.summary %></span>
                 <input hidden type="text" name="summary" id="trails" value="<%= details.summary %>">
-            </li>   
-            <li>
-                Difficulty: <%= details.difficulty %>
+            </div>   
+            <div>
+                <span id="span">>Difficulty: <%= details.difficulty %></span>
                 <input hidden type="text" name="difficulty" id="trails" value="<%= details.difficulty %>">
-            </li>   
-            <li>
-                Rating: <%= details.stars %>
+            </div>   
+            <div>
+                <span id="span">>Rating: <%= details.stars %></span> 
                 <input hidden type="number" name="stars" id="trails" value="<%= details.stars %>">
-            </li>   
-            <li>
-                Location: <%= details.location %>
+            </div>   
+            <div>
+                <span id="span">>Location: <%= details.location %></span> 
                 <input hidden type="text" name="location" id="trails" value="<%= details.location %>">
-            </li>   
-            <li>
-                Length: <%= details.length %> miles
+            </div>   
+            <div>
+                <span id="span">>Length: <%= details.length %> miles</span> 
                 <input hidden type="number" name="length" id="trails" value="<%= details.length %>">
-            </li>    
-            <li>
-                Elevation: <%= details.high %> feet
+            </div>    
+            <div>
+                <span id="span">>Elevation: <%= details.high %> feet</span> 
                 <input hidden type="number" name="high" id="trails" value="<%= details.high %>">
-            </li>   
-            <li>
-                Base elevation: <%= details.low %> feet
+            </div>   
+            <div>
+                <span id="span">>Base elevation: <%= details.low %> feet</span> 
                 <input hidden type="number" name="low" id="trails" value="<%= details.low %>">
-            </li>  
-            <li>
-                Latitude: <%= details.latitude %>
+            </div>  
+            <div>
+                <span id="span">>Latitude: <%= details.latitude %></span> 
                 <input hidden type="number" name="latitude" id="trails" value="<%= details.latitude %>">
-            </li>  
-            <li>
-                Longitude: <%= details.longitude %>
+            </div>  
+            <div>
+                <span id="span">>Longitude: <%= details.longitude %></span> 
                 <input hidden type="number" name="longitude" id="trails" value="<%= details.longitude %>">
-            </li>  
-            <li>
-                Ascent: <%= details.ascent %>
+            </div>  
+            <div>
+                <span id="span">>Ascent: <%= details.ascent %></span> 
                 <input hidden type="number" name="ascent" id="trails" value="<%= details.ascent %>">
-            </li>  
-            <li>
-                Descent: <%= details.descent %>
+            </div>  
+            <div>
+                <span id="span">>Descent: <%= details.descent %></span> 
                 <input hidden type="number" name="descent" id="trails" value="<%= details.descent %>">
-            </li>  
-            <li>
-                Condition status: <%= details.conditionStatus %>
+            </div>  
+            <div>
+                <span id="span">>Condition status: <%= details.conditionStatus %></span> 
                 <input hidden type="text" name="conditionStatus" id="trails" value="<%= details.conditionStatus %>">
-            </li>  
-            <li>
-                Conditions last updated on: <%= details.conditionDate %>
+            </div>  
+            <div>
+                <span id="span">>Conditions last updated on: <%= details.conditionDate %></span> 
                 <input hidden type="number" name="conditionDate" id="trails" value="<%= details.conditionDate %>">
-            </li>  
-            <li>
-                <a href="<% details.url %>" target="_blank">More info</a>
-                <input hidden type="text" name="url" id="trails" value="<%= details.url %>">
-            </li>
+            </div>  
+            <div>
+                <a href="<%= details.url %>" target="_blank" style="color: rgb(255, 250, 100) ;">More info</a>
+            </div>
         </ul>
 
-        <button type="submit">Save trail</button>
+        <button type="submit" id="save-trail-button">Save trail</button>
     </form>
 <br> 
 <br>     

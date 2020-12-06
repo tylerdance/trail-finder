@@ -22,14 +22,20 @@ h1 {
 
 #instructions {
   color: white;
-  display: flex;
-  justify-content: center;
+  text-align: center;
+  /* display: flex;
+  justify-content: center; */
+  font-family: 'Architects Daughter', cursive;
+  font-size: 40px;
 }
 
 .userParams {
   color: white;
   display: flex;
   justify-content: center;
+  /* text-align: center; */
+  font-size: 25px;
+  font-family: 'Architects Daughter', cursive;
 }
 
 #results {
@@ -50,12 +56,24 @@ h1 {
 
 .trails {
   color:white;
+  font-size: 25px;
+  margin-left: 50px;
+  font-family: 'Architects Daughter', cursive;
+  /* background-color: tomato; */
   /* display: flex;
   justify-content: center; */
 }
 
 #trail-name {
   color: white;
+  font-size: 55px;
+  font-family: 'Reenie Beanie', cursive;
+  /* background-color: tomato; */
+}
+
+#span {
+  background-color: tomato;
+
 }
 
 #updateEmail {
@@ -74,9 +92,11 @@ h1 {
   color: white;
 }
 
-#saved-trails {
-  margin-left: 30px;
+#my-trails {
+  margin-left: 200px;
   color: white;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 25px;
 }
 
 #back-button {
@@ -84,12 +104,21 @@ h1 {
 }
 
 #remove-trail {
+  margin-left: 200px;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 20px;
+}
+
+#save-trail-button {
   margin-left: 30px;
 }
 
-#saved-trails-header {
-  display: grid;
-  justify-content: center;
+#header {
+  /* display: grid;
+  justify-content: center; */
+  text-align: center;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 80px;
 }
 
 #my-saved-trails-btn {
@@ -102,4 +131,8 @@ h1 {
 
 #updateEmail {
   margin-left: 30px;
+}
+
+.alert {
+  color: white;
 }

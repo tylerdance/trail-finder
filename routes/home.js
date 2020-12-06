@@ -1,5 +1,5 @@
 const express = require('express')
-const app = express.Router();
+const router = express.Router();
 const axios = require('axios');
 const db = require('../models')
 const SECRET_SESSION = process.env.SECRET_SESSION;
@@ -7,7 +7,7 @@ const API_KEY = process.env.API_KEY;
 const isLoggedIn = require('../middleware/isLoggedIn')
 
 // Home route
-app.get('/', isLoggedIn, async (req, res) => {
+router.get('/', isLoggedIn, async (req, res) => {
     const latitude = req.query.latitude
     // console.log(latitude);
     const longitude = req.query.longitude
@@ -15,10 +15,7 @@ app.get('/', isLoggedIn, async (req, res) => {
     const maxDistance = req.query.maxDistance
     let finalArray = []
     const api = `https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=3&key=${API_KEY}`
-    // console.log(api);
-
     if (latitude && longitude) {
-        // console.log('randomString', latitude, longitude);
         // axios.get(`https://www.mtbproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&maxResults=30&key=${API_KEY}`)
         const data = await axios.get(`https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=3&key=${API_KEY}`)
         if (data.status === 200) {
@@ -53,14 +50,14 @@ app.get('/', isLoggedIn, async (req, res) => {
 });
 
 // Return "Saved Trails" page
-app.get('/savedTrails', isLoggedIn, function(req, res) {
+router.get('/savedTrails', isLoggedIn, function(req, res) {
     const currentUser = req.user.id;
     db.trails.findAll({
         where: {
             userId: currentUser
         }
     }).then((myTrails) => {
-        console.log(myTrails);
+        // console.log(myTrails);
         res.render('savedTrails', { savedTrails: myTrails })
     })
     .catch(err => {
@@ -69,7 +66,7 @@ app.get('/savedTrails', isLoggedIn, function(req, res) {
 });
 
 // Save trail with its details to the database
-app.post('/savedTrails', isLoggedIn, (req, res) => {
+router.post('/savedTrails', isLoggedIn, (req, res) => {
     // const trailDetails = req.body;
     // console.log('trail id', trailDetails);
     // console.log(req.user);
@@ -100,7 +97,7 @@ app.post('/savedTrails', isLoggedIn, (req, res) => {
 })
 
 // Delete saved trail
-app.delete('/savedTrails/:id', isLoggedIn, async (req, res) => {
+router.delete('/savedTrails/:id', isLoggedIn, async (req, res) => {
     // console.log('something', req.params);
     const { id } = req.params;
     const deletedTrail = await db.trails.destroy({
@@ -118,13 +115,13 @@ app.delete('/savedTrails/:id', isLoggedIn, async (req, res) => {
 })
 
 // Return update email page
-app.get('/update', isLoggedIn, function(req, res) {
+router.get('/update', isLoggedIn, function(req, res) {
     // console.log('--- EDIT route ---');
     res.render('update')
 })
 
 // Update user email
-app.put('/update', isLoggedIn, (req, res) => {
+router.put('/update', isLoggedIn, (req, res) => {
     console.log('--- PUT route ---');
     console.log(req.user.id);
     db.users.update({
@@ -136,5 +133,4 @@ app.put('/update', isLoggedIn, (req, res) => {
     })
 })
 
-
-module.exports = app;
+module.exports = router;
