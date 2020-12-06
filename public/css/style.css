@@ -10,6 +10,8 @@ nav ul li {
   text-decoration: none;
   display: inline-block;
   margin-right: .3em;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 30px;
 }
 
 h1 {
@@ -52,10 +54,8 @@ h1 {
   color: white;
 }
 
-
-
 .trails {
-  color:white;
+  color:rgb(0, 0, 0);
   font-size: 25px;
   margin-left: 50px;
   font-family: 'Architects Daughter', cursive;
@@ -65,14 +65,14 @@ h1 {
 }
 
 #trail-name {
-  color: white;
+  color: rgb(232, 139, 26);
   font-size: 64px;
   font-family: 'Reenie Beanie', cursive;
   /* background-color: tomato; */
 }
 
 #span {
-  background-color: tomato;
+  background-color:rgb(137, 232, 96);
 }
 
 #updateEmail {
@@ -95,10 +95,10 @@ h1 {
 }
 
 #my-trails {
-  margin-left: 200px;
-  color: white;
-  font-family: 'Architects Daughter', cursive;
+  color:rgb(0, 0, 0);
   font-size: 25px;
+  margin-left: 100px;
+  font-family: 'Architects Daughter', cursive;
 }
 
 #back-button {
@@ -140,7 +140,7 @@ h1 {
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;
+  color: rgb(255, 255, 255);
   text-shadow: 0px 0px 10px rgba(0,0,0,0.2);
   box-shadow: 0 0 20px #eee;
   border-radius: 10px;
@@ -206,26 +206,28 @@ h1 {
 }
 
 .form-row {
-  margin-left: 200px;
-  margin-right: 200px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 #login-message {
   color: aliceblue;
   text-align: center;
-  font-size: 40px;
+  font-size: 45px;
+  font-family: 'Antic Slab', serif;
 }
 
 #sign-up-message {
   color: aliceblue;
   text-align: center;
-  font-size: 40px;
+  font-size: 45px;
+  font-family: 'Antic Slab', serif;
 }
 
 #login-btn {
-  margin-left: 205px;
+  margin-left: 105px;
 }
 
 #sign-up-btn {
-  margin-left: 205px;
+  margin-left: 105px;
 }

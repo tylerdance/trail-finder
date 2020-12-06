@@ -14,10 +14,10 @@ router.get('/', isLoggedIn, async (req, res) => {
     // console.log('longitude', longitude);
     const maxDistance = req.query.maxDistance
     let finalArray = []
-    const api = `https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=3&key=${API_KEY}`
+    // const api = `https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=3&key=${API_KEY}`
     if (latitude && longitude) {
         // axios.get(`https://www.mtbproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&maxResults=30&key=${API_KEY}`)
-        const data = await axios.get(`https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=3&key=${API_KEY}`)
+        const data = await axios.get(`https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=50&key=${API_KEY}`)
         if (data.status === 200) {
             // console.log(data.data.trails);
             finalArray = data.data.trails.map(trailObject => {
