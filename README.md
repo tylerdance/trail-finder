@@ -1,12 +1,12 @@
 # Off Road Trail Finder
 
-This web app was designed to streamline the bike trail finding experience and to allow users to store their favorite trails, or trails they would like to try to their personal account for reference.
+This web app was designed to streamline the bike trail finding experience and to allow users to save their favorite trails, or trails they would like to try to their personal account for reference.
 
 Off Road Trail Finder is pulling data from MTB Project's API (link below). Search from anywhere in the United States, up to 200 miles from your location. Get in depth trail detail such as trail length, elevation, conditions, and more.
 
 Next steps for this project:
-1. Keep search results displayed on page after saving a trail
-2. Make search available without sign in, but "save trail" functionality requires sign in
+1. Keep search results displayed on page after saving a trail.
+2. Make search available without sign in, but "save trail" functionality requires sign in.
 3. Change cooridinate input to address input and build logic that will calculate coordinates for user.
 
 ## Local installation
@@ -29,7 +29,7 @@ The main route is an `async` function using axios to call the MTB Project API.
 
 ![img](./img/save-trail-route-trail-finder.png)
 
-## Pre-build ERD and wireframes
+## Pre-build info
 
 ### ERD
 ![img](trail-finder-ERD.png)
