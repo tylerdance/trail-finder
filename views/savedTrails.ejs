@@ -4,8 +4,6 @@
     <button id="back-button" class="btn btn-3">Back to Search</button>
 </form>
 
-<br>
-
 <h1 id="header">Saved Trails</h1>
 
 <br>
@@ -13,7 +11,7 @@
 <div>
     <% savedTrails.forEach((trail) => { %>
         <div id="my-trails">
-            <h3 id="trail-name" style="color:white;">
+            <h3 id="trail-name">
                 <%= trail.name %>    
             </h3>
             <div> 
@@ -67,7 +65,7 @@
 
         <form action="/savedTrails/<%= trail.id %>?_method=DELETE" method="POST">
             <input hidden type="text" name="id" value="<%= trail.id %>">
-            <button type="submit" id="remove-trail">
+            <button type="submit" id="remove-trail" class="bttn-hover color-4">
                 Remove Trail
             </button>    
         </form>

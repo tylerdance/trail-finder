@@ -9,17 +9,12 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 // Home route
 router.get('/', isLoggedIn, async (req, res) => {
     const latitude = req.query.latitude
-    // console.log(latitude);
     const longitude = req.query.longitude
-    // console.log('longitude', longitude);
     const maxDistance = req.query.maxDistance
     let finalArray = []
-    // const api = `https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=3&key=${API_KEY}`
     if (latitude && longitude) {
-        // axios.get(`https://www.mtbproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&maxResults=30&key=${API_KEY}`)
         const data = await axios.get(`https://www.mtbproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxDistance=${maxDistance}&maxResults=50&key=${API_KEY}`)
         if (data.status === 200) {
-            // console.log(data.data.trails);
             finalArray = data.data.trails.map(trailObject => {
             const finalObject = {
                     name: trailObject.name,
@@ -40,12 +35,10 @@ router.get('/', isLoggedIn, async (req, res) => {
                     image: trailObject.imgMedium,
                     id: trailObject.id
                 }
-                // console.log(finalObject);
                 return finalObject;
             })
         }
     }
-    // console.log(finalArray);
     res.render('index', { finalArray, alerts: res.locals.alerts })
 });
 
@@ -122,8 +115,8 @@ router.get('/update', isLoggedIn, function(req, res) {
 
 // Update user email
 router.put('/update', isLoggedIn, (req, res) => {
-    console.log('--- PUT route ---');
-    console.log(req.user.id);
+    // console.log('--- PUT route ---');
+    // console.log(req.user.id);
     db.users.update({
         email: req.body.email
     }, {

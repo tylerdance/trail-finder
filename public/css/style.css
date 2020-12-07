@@ -75,19 +75,27 @@ h1 {
   background-color:rgb(137, 232, 96);
 }
 
-#updateEmail {
-  color: white;
+.updateEmail {
+  color: rgb(255, 255, 255);
+  font-size: 39px;
+  font-family: 'Antic Slab', serif;
 }
 
 .currentInfo {
   color: white;
-  font-size: 22px;
+  font-size: 30px;
+  font-family: 'Antic Slab', serif;
+}
+
+#update-container {
+  display: grid;
+  justify-content: center;
 }
 
 #myProfile {
   color: white;
   font-family: 'Architects Daughter', cursive;
-  font-size: 50px;
+  font-size: 60px;
 }
 
 #signUp {
@@ -108,7 +116,7 @@ h1 {
 }
 
 #remove-trail {
-  margin-left: 200px;
+  margin-left: 100px;
   font-family: 'Architects Daughter', cursive;
   font-size: 20px;
 }
@@ -190,15 +198,31 @@ h1 {
 #hereLink {
   color: rgb(31, 142, 240);
   font-size: 20px;
+  display: grid;
+  justify-items: center;
 }
 
+/* search trails button */
+.bttn-hover.color-1 {
+  background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+  box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+  font-size: 20px;
+  text-align:center;
+}
+#search-trails {
+  display: grid;
+  justify-items: center;
+}
 
 #profile-container {
   margin-left: 30px;
+  display: grid;
+  justify-content: center;
 }
 
 #updateEmail {
   margin-left: 30px;
+  font-size: 20px;
 }
 
 .alert {
@@ -230,4 +254,9 @@ h1 {
 
 #sign-up-btn {
   margin-left: 105px;
+}
+
+#update-page-nav {
+  display: flex;
+  flex-direction: row;
 }

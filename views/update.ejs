@@ -1,26 +1,30 @@
 <br>
 
-<form action="/">
-    <button id="back-button">Back to Search</button>
-</form>
-
-<form action="/profile">
-    <button id="back-button">Back to Profile</button>
-</form>
-
-<br>
-<br>
-
-<div class="currentInfo"> 
-    <div id="updateEmail">Current email: <%= (user.email) %></div>
+<div id="update-page-nav">
+    <form action="/">
+        <button id="back-button" class="btn btn-3">Back to Search</button>
+    </form>
+    
+    <form action="/profile">
+        <button id="back-button" class="btn btn-3">Back to Profile</button>
+    </form>
 </div>
 
 <br>
+<br>   
 
-<div id="updateEmail">
-    <form method="POST" action="/update?_method=PUT">
-        <label for="new-email">New email: </label>
-        <input type="text" name="email" id="name">
-        <input type="submit" value="Update">
-    </form>
+<div id="update-container">
+    <div class="currentInfo"> 
+        <div class="updateEmail">Current email: <%= (user.email) %></div>
+    </div>
+    
+    <br>
+    
+    <div id="updateEmail">
+        <form method="POST" action="/update?_method=PUT">
+            <label for="new-email" class="updateEmail">New email: </label>
+            <input type="text" name="email" id="name">
+            <input type="submit" value="Update">
+        </form>
+    </div>
 </div>
