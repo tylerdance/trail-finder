@@ -86,7 +86,6 @@ router.post('/savedTrails', isLoggedIn, (req, res) => {
         }).then((result) => {
         res.redirect('/savedTrails')
     })
-    // localStorage.setItem(storeResults);
 })
 
 // Delete saved trail
