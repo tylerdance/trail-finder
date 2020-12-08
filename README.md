@@ -5,9 +5,8 @@ This web app was designed to streamline the bike trail finding experience and to
 Off Road Trail Finder is pulling data from MTB Project's API (link below). Search from anywhere in the United States, up to 200 miles from your location. Get in depth trail detail such as trail length, elevation, conditions, and more.
 
 Next steps for this project:
-1. Make search available without sign in, but "save trail" functionality requires sign in.
-2. Change cooridinate input to address input and build logic that will calculate coordinates for user.
-3. Screensize responsivity.
+1. Change cooridinate input to address input and build logic that will calculate coordinates for user.
+2. Screensize responsive.
 
 ## Local installation
 1. Clone this repository

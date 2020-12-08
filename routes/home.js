@@ -7,7 +7,7 @@ const API_KEY = process.env.API_KEY;
 const isLoggedIn = require('../middleware/isLoggedIn')
 
 // Home route
-router.get('/', isLoggedIn, async (req, res) => {
+router.get('/', async (req, res) => {
     const latitude = req.query.latitude
     const longitude = req.query.longitude
     const maxDistance = req.query.maxDistance
