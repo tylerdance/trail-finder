@@ -4,6 +4,7 @@ body {
   /* background-repeat: no-repeat; */
   /* background-attachment: fixed; */
   /* background-size: cover; */
+  max-width: 100%;
 }
 
 nav ul li {
@@ -29,8 +30,8 @@ h1 {
   justify-content: center; */
   font-family: 'Architects Daughter', cursive;
   font-size: 42px;
-  margin-left: 180px;
-  margin-right: 180px;
+  /* margin-left: 180px;
+  margin-right: 180px; */
 }
 
 .userParams {
@@ -56,17 +57,19 @@ h1 {
 
 .trails {
   color:rgb(0, 0, 0);
-  font-size: 25px;
-  margin-left: 50px;
+  font-size: 23px;
+  /* margin-left: 50px; */
   font-family: 'Architects Daughter', cursive;
   /* background-color: tomato; */
   /* display: flex;
   justify-content: center; */
+  margin-right: 20px;
 }
 
 #trail-name {
   color: rgb(232, 139, 26);
-  font-size: 64px;
+  font-size: 56px;
+  font-weight: 900;
   font-family: 'Reenie Beanie', cursive;
   /* background-color: tomato; */
 }
@@ -132,6 +135,7 @@ h1 {
   text-align: center;
   font-family: 'Architects Daughter', cursive;
   font-size: 80px;
+  max-width: 100%;
 }
 
 #my-saved-trails-btn {
@@ -211,8 +215,8 @@ h1 {
   text-align:center;
 }
 #search-trails {
-  display: grid;
-  justify-items: center;
+  /* display: grid;
+  justify-items: center; */
 }
 
 #profile-container {

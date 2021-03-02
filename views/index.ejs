@@ -14,7 +14,7 @@
 <br>
 
 <div>
-    <h3 id="instructions">Enter the coordinates of your location and the maximum distance you want to search below</h3>
+    <!-- <h3 id="instructions">Enter the coordinates of your location and the maximum distance you want to search below</h3> -->
     <br>
 </div>
 
@@ -32,11 +32,11 @@
 
 <div class="userParams">
     <form method="GET" action="/">
-        Latitude: <input type="text" name="latitude">
+        <input type="text" name="latitude" placeholder="Latitude">
         <br>
-        Longitude: <input type="text" name="longitude">
+        <input type="text" name="longitude" placeholder="Longitude">
         <br>
-        Max distance: <input type="text" name="maxDistance" placeholder="up to 200 miles"> miles
+        <input type="text" name="maxDistance" placeholder="Max distance (miles)">
         <br>
         <br>
         <div id="search-trails">
@@ -52,7 +52,7 @@
     <form method="POST" action="/savedTrails" class="trails">
         <ul>
             <h4 id="trail-name">
-                <span id="span"></span><b><%= details.name %></b> 
+                <span id="span"></span><p><%= details.name %></p> 
                 <input hidden type="text" name="name" id="trails" value="<%= details.name %>">
             </h4>   
             <div>
